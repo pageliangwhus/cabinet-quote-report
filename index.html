@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>升级多层实木门板 - 新旧报价对比报告</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: #f5f7fa; color: #333; line-height: 1.7; padding: 20px; }
+  .container { max-width: 960px; margin: 0 auto; background: #fff; border-radius: 12px; box-shadow: 0 2px 16px rgba(0,0,0,0.08); padding: 40px 48px; }
+  h1 { font-size: 24px; color: #1a1a2e; border-bottom: 3px solid #e94560; padding-bottom: 12px; margin-bottom: 8px; }
+  .meta { color: #888; font-size: 14px; margin-bottom: 32px; }
+
+  h2 { font-size: 20px; color: #1a1a2e; margin: 36px 0 16px; padding-left: 12px; border-left: 4px solid #e94560; }
+  h3 { font-size: 17px; color: #16213e; margin: 24px 0 12px; }
+  h4 { font-size: 15px; color: #333; margin: 16px 0 8px; }
+
+  .alert { background: #fff3cd; border: 1px solid #ffc107; border-radius: 8px; padding: 16px 20px; margin: 16px 0 24px; }
+  .alert h3 { color: #856404; margin: 0 0 8px; font-size: 16px; }
+  .alert p { margin: 4px 0; font-size: 14px; color: #856404; }
+  .alert strong { color: #d63384; }
+
+  .summary-box { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; border-radius: 10px; padding: 24px 28px; margin: 16px 0 24px; }
+  .summary-box h3 { color: #fff; margin: 0 0 12px; }
+  .summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 12px; }
+  .summary-item { background: rgba(255,255,255,0.15); border-radius: 8px; padding: 12px 16px; text-align: center; }
+  .summary-item .label { font-size: 13px; opacity: 0.9; }
+  .summary-item .value { font-size: 22px; font-weight: 700; margin-top: 4px; }
+  .summary-item .value.red { color: #ffd6e0; }
+
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 14px; }
+  th { background: #f0f2f5; color: #555; font-weight: 600; text-align: left; padding: 10px 12px; border-bottom: 2px solid #ddd; }
+  td { padding: 9px 12px; border-bottom: 1px solid #eee; }
+  tr:hover td { background: #fafbfc; }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .pos { color: #e94560; font-weight: 600; }
+  .neg { color: #27ae60; font-weight: 600; }
+  .bold { font-weight: 700; }
+  .tag { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 4px; margin-left: 4px; }
+  .tag-new { background: #e8f5e9; color: #2e7d32; }
+  .tag-remove { background: #fce4ec; color: #c62828; }
+  .tag-change { background: #fff3e0; color: #e65100; }
+
+  .note { background: #e8f4fd; border-left: 4px solid #2196f3; padding: 12px 16px; margin: 12px 0; font-size: 13px; color: #1565c0; border-radius: 0 6px 6px 0; }
+
+  .section-total { background: #fafbfc; }
+  .section-total td { font-weight: 700; border-top: 2px solid #ddd; }
+
+  .category-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+  .cat-card { border: 1px solid #e0e0e0; border-radius: 8px; padding: 16px; }
+  .cat-card h4 { margin: 0 0 8px; font-size: 15px; }
+  .cat-card .amount { font-size: 20px; font-weight: 700; }
+  .cat-card .pct { font-size: 13px; color: #888; }
+  .cat-card.a { border-color: #667eea; } .cat-card.a h4 { color: #667eea; } .cat-card.a .amount { color: #667eea; }
+  .cat-card.b { border-color: #27ae60; } .cat-card.b h4 { color: #27ae60; } .cat-card.b .amount { color: #27ae60; }
+  .cat-card.c { border-color: #f39c12; } .cat-card.c h4 { color: #f39c12; } .cat-card.c .amount { color: #f39c12; }
+  .cat-card.d { border-color: #e94560; } .cat-card.d h4 { color: #e94560; } .cat-card.d .amount { color: #e94560; }
+
+  .todo-list { margin: 12px 0; }
+  .todo-item { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 12px 16px; margin: 8px 0; display: flex; gap: 12px; align-items: flex-start; }
+  .todo-num { background: #e94560; color: #fff; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+  .todo-text { font-size: 14px; }
+
+  .floor-header { background: #f0f2f5; padding: 8px 12px; border-radius: 6px; margin: 20px 0 12px; font-size: 16px; font-weight: 700; color: #333; }
+
+  @media (max-width: 640px) {
+    .container { padding: 20px; }
+    .summary-grid { grid-template-columns: 1fr; }
+    .category-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>升级多层实木门板方案 — 新旧报价对比报告</h1>
+<p class="meta">单价：680元/m&sup2; &nbsp;|&nbsp; 旧报价日期：4月20日 &nbsp;|&nbsp; 新报价日期：4月30日</p>
+
+<!-- 一、重要发现 -->
+<h2>一、重要发现：供应商报价存在公式错误</h2>
+
+<div class="alert">
+  <h3>Excel 公式引用错误，总价虚高 1,388 元</h3>
+  <p>新报价 Excel 中，<strong>一楼房间的小计公式</strong>写成了 <code>=H27+H26+H25+H24+H23+H22</code></p>
+  <p>引用的是<strong>一楼电视柜的行</strong>，而非一楼房间自己的行（H34:H39）。</p>
+  <p>这导致一楼房间小计多算了 <strong>1,387.98 元</strong>，总价相应虚高。<strong>两份新报价均有此问题。</strong></p>
+</div>
+
+<table>
+  <tr><th></th><th class="num">供应商报价</th><th class="num">修正后报价</th></tr>
+  <tr><td>一楼房间小计</td><td class="num">7,500.50</td><td class="num">6,112.51</td></tr>
+  <tr><td><strong>订单总金额</strong></td><td class="num bold">54,371 元</td><td class="num bold">52,983 元</td></tr>
+  <tr><td>虚高金额</td><td class="num" colspan="2"><span class="pos">多算 1,388 元</span></td></tr>
+</table>
+
+<div class="note">建议：向供应商指出此公式错误，要求修正。以下所有对比均基于修正后的正确金额。</div>
+
+<!-- 二、总览 -->
+<h2>二、总览对比</h2>
+
+<div class="summary-box">
+  <div class="summary-grid">
+    <div class="summary-item">
+      <div class="label">旧报价</div>
+      <div class="value">41,988 元</div>
+    </div>
+    <div class="summary-item">
+      <div class="label">新报价（修正后）</div>
+      <div class="value">52,983 元</div>
+    </div>
+    <div class="summary-item">
+      <div class="label">净增额</div>
+      <div class="value red">+10,994 元</div>
+    </div>
+  </div>
+  <p style="text-align:center; margin-top:16px; font-size:15px; opacity:0.9;">涨价幅度约 <strong>+26.2%</strong>，其中新增区域占 52%</p>
+</div>
+
+<!-- 三、按区域对比 -->
+<h2>三、按区域逐项对比</h2>
+
+<div class="floor-header">一楼</div>
+
+<!-- 鞋柜 -->
+<h3>1. 鞋柜区域</h3>
+<table>
+  <tr><th>项目</th><th class="num">旧报价</th><th class="num">新报价</th><th>说明</th></tr>
+  <tr><td>右边鞋柜 (560&times;2950)</td><td class="num">1,123.36</td><td class="num">1,123.36</td><td>尺寸不变</td></tr>
+  <tr><td>左边鞋柜 (800/785&times;2950)</td><td class="num">1,604.80</td><td class="num">1,574.71</td><td>量尺缩窄15mm <span class="tag tag-change">量尺</span></td></tr>
+  <tr><td>下柜单边圆弧</td><td class="num">&mdash;</td><td class="num">402.50</td><td><span class="tag tag-new">新增</span></td></tr>
+  <tr><td>上柜单边圆弧</td><td class="num">&mdash;</td><td class="num">465.50</td><td><span class="tag tag-new">新增</span></td></tr>
+  <tr class="section-total"><td>小计</td><td class="num">2,728.16</td><td class="num">3,566.07</td><td class="pos">+837.91</td></tr>
+</table>
+
+<!-- 电视柜 -->
+<h3>2. 电视柜区域</h3>
+<table>
+  <tr><th>项目</th><th class="num">旧报价</th><th class="num">新报价</th><th>说明</th></tr>
+  <tr><td>侧立柜/侧柜 (875&times;2950)</td><td class="num">1,755.25</td><td class="num">1,755.25</td><td>尺寸不变</td></tr>
+  <tr><td>电视柜 (2550宽)</td><td class="num">1,734.00</td><td class="num">&mdash;</td><td><span class="tag tag-remove">已取消</span></td></tr>
+  <tr><td>玻璃门补差价</td><td class="num">&mdash;</td><td class="num">315.65</td><td><span class="tag tag-new">新增</span></td></tr>
+  <tr><td>灯带系统 (含变压器+开关)</td><td class="num">&mdash;</td><td class="num">630.00</td><td><span class="tag tag-new">新增</span></td></tr>
+  <tr><td>单边圆弧</td><td class="num">&mdash;</td><td class="num">480.00</td><td><span class="tag tag-new">新增</span></td></tr>
+  <tr class="section-total"><td>小计</td><td class="num">3,489.25</td><td class="num">3,180.90</td><td class="neg">-308.35</td></tr>
+</table>
+
+<!-- 隔断 -->
+<h3>3. 隔断柜区域</h3>
+<table>
+  <tr><th>项目</th><th class="num">旧报价</th><th class="num">新报价</th><th>说明</th></tr>
+  <tr><td>隔断柜本体 (1600&times;2950)</td><td class="num">3,209.60</td><td class="num">3,209.60</td><td>尺寸不变</td></tr>
+  <tr><td>玻璃门</td><td class="num">364.75 (&times;2块)</td><td class="num">1,286.14 (&times;8块)</td><td><span class="tag tag-change">数量大增</span></td></tr>
+  <tr><td>超出抽屉</td><td class="num">&mdash;</td><td class="num">120.00</td><td><span class="tag tag-new">新增</span> 2个</td></tr>
+  <tr><td>18厘背板</td><td class="num">&mdash;</td><td class="num">485.62</td><td><span class="tag tag-new">新增</span></td></tr>
+  <tr><td>下柜双边圆弧</td><td class="num">&mdash;</td><td class="num">350.00</td><td><span class="tag tag-new">新增</span></td></tr>
+  <tr><td>上柜双边圆弧</td><td class="num">&mdash;</td><td class="num">682.50</td><td><span class="tag tag-new">新增</span></td></tr>
+  <tr class="section-total"><td>小计</td><td class="num">3,574.35</td><td class="num">6,133.87</td><td class="pos">+2,559.52</td></tr>
+</table>
+
+<!-- 一楼房间 -->
+<h3>4. 卧室衣柜区域</h3>
+<table>
+  <tr><th>项目</th><th class="num">旧报价</th><th class="num">新报价</th><th>说明</th></tr>
+  <tr><td>衣柜本体</td><td class="num">5,197.92 (2600&times;2940)</td><td class="num">5,458.51 (2735&times;2935)</td><td><span class="tag tag-change">量尺变宽</span></td></tr>
+  <tr><td>超出抽屉</td><td class="num">&mdash;</td><td class="num">60.00</td><td><span class="tag tag-new">新增</span> 1个</td></tr>
+  <tr><td>长款铣槽免拉手</td><td class="num">&mdash;</td><td class="num">100.00</td><td><span class="tag tag-new">新增</span> 2个</td></tr>
+  <tr><td>短款铣槽免拉手</td><td class="num">&mdash;</td><td class="num">60.00</td><td><span class="tag tag-new">新增</span> 2个</td></tr>
+  <tr><td>玻璃门补差价</td><td class="num">&mdash;</td><td class="num">298.00</td><td><span class="tag tag-new">新增</span> 2块</td></tr>
+  <tr><td>液压支撑杆</td><td class="num">&mdash;</td><td class="num">136.00</td><td><span class="tag tag-new">新增</span> 2个</td></tr>
+  <tr class="section-total"><td>小计</td><td class="num">5,197.92</td><td class="num">6,112.51</td><td class="pos">+914.59</td></tr>
+</table>
+
+<!-- 洗手盆 -->
+<h3>5. 洗手盆 <span class="tag tag-new">全新区域</span></h3>
+<table>
+  <tr><th>项目</th><th class="num">新报价</th></tr>
+  <tr><td>洗手盆柜 (1900&times;850)</td><td class="num">1,292.00</td></tr>
+  <tr><td>大理石台面 (1900&times;600)</td><td class="num">1,292.00</td></tr>
+  <tr><td>洗手盆+水龙头</td><td class="num">380.00</td></tr>
+  <tr class="section-total"><td>小计</td><td class="num bold">2,964.00</td></tr>
+</table>
+
+<!-- 楼梯 -->
+<h3>6. 楼梯封板 <span class="tag tag-new">全新区域</span></h3>
+<table>
+  <tr><th>项目</th><th class="num">新报价</th></tr>
+  <tr><td>柜门 (1190&times;2730)</td><td class="num">1,364.45</td></tr>
+  <tr><td>长款铣槽免拉手 &times;2</td><td class="num">100.00</td></tr>
+  <tr><td>右侧封板 (1420&times;2050)</td><td class="num">1,018.85</td></tr>
+  <tr><td>楼梯斜角封板 (1100&times;730)</td><td class="num">281.05</td></tr>
+  <tr class="section-total"><td>小计</td><td class="num bold">2,764.35</td></tr>
+</table>
+
+<!-- 取消 -->
+<h3>7. 已取消项目</h3>
+<table>
+  <tr><th>项目</th><th class="num">旧报价</th><th class="num">新报价</th></tr>
+  <tr><td>洗衣机旁柜子 (1100&times;900)</td><td class="num">748.00</td><td class="num">&mdash;</td></tr>
+</table>
+
+<!-- 一楼汇总 -->
+<table>
+  <tr><th>一楼区域</th><th class="num">旧报价</th><th class="num">新报价</th><th class="num">差额</th></tr>
+  <tr><td>鞋柜</td><td class="num">2,728.16</td><td class="num">3,566.07</td><td class="num pos">+837.91</td></tr>
+  <tr><td>电视柜</td><td class="num">3,489.25</td><td class="num">3,180.90</td><td class="num neg">-308.35</td></tr>
+  <tr><td>隔断柜</td><td class="num">3,574.35</td><td class="num">6,133.87</td><td class="num pos">+2,559.52</td></tr>
+  <tr><td>卧室衣柜</td><td class="num">5,197.92</td><td class="num">6,112.51</td><td class="num pos">+914.59</td></tr>
+  <tr><td>洗手盆</td><td class="num">0</td><td class="num">2,964.00</td><td class="num pos">+2,964.00</td></tr>
+  <tr><td>楼梯封板</td><td class="num">0</td><td class="num">2,764.35</td><td class="num pos">+2,764.35</td></tr>
+  <tr><td>洗衣机旁柜子</td><td class="num">748.00</td><td class="num">0</td><td class="num neg">-748.00</td></tr>
+  <tr class="section-total"><td>一楼合计</td><td class="num">15,737.68</td><td class="num">24,721.71</td><td class="num pos">+8,984.02</td></tr>
+</table>
+
+<!-- 二楼 -->
+<div class="floor-header">二楼</div>
+
+<h3>1. 主卧衣柜（二楼右一）</h3>
+<table>
+  <tr><th>项目</th><th class="num">旧报价</th><th class="num">新报价</th><th>说明</th></tr>
+  <tr><td>衣柜本体 (2190&times;2660)</td><td class="num">3,961.27</td><td class="num">3,961.27</td><td>尺寸不变</td></tr>
+  <tr><td>铣槽拉手</td><td class="num">100.00 (1米&times;2)</td><td class="num">100.00 (长款&times;2)</td><td>价格不变</td></tr>
+  <tr><td>短款铣槽免拉手</td><td class="num">&mdash;</td><td class="num">90.00</td><td><span class="tag tag-new">新增</span> 3个</td></tr>
+  <tr><td>超出抽屉</td><td class="num">&mdash;</td><td class="num">60.00</td><td><span class="tag tag-new">新增</span> 1个</td></tr>
+  <tr class="section-total"><td>小计</td><td class="num">4,061.27</td><td class="num">4,211.27</td><td class="pos">+150.00</td></tr>
+</table>
+
+<h3>2. 中间卧室 &rarr; 衣柜+书桌（二楼右二）</h3>
+<table>
+  <tr><th>项目</th><th class="num">旧报价</th><th class="num">新报价</th><th>说明</th></tr>
+  <tr><td>衣柜本体</td><td class="num">4,633.38 (2170&times;3140)</td><td class="num">4,363.22 (2050&times;3130)</td><td><span class="tag tag-change">量尺缩小</span></td></tr>
+  <tr><td>玻璃门</td><td class="num">345.68 (&times;2)</td><td class="num">298.00 (&times;2)</td><td>改为补差价计价</td></tr>
+  <tr><td>铣槽拉手</td><td class="num">100.00</td><td class="num">190.00</td><td>拆分为长款+短款</td></tr>
+  <tr><td>超出抽屉</td><td class="num">&mdash;</td><td class="num">120.00</td><td><span class="tag tag-new">新增</span> 2个</td></tr>
+  <tr class="section-total"><td>小计</td><td class="num">5,079.06</td><td class="num">4,971.22</td><td class="neg">-107.84</td></tr>
+</table>
+
+<h3>3. 阳台卧室（二楼右三）</h3>
+<table>
+  <tr><th>项目</th><th class="num">旧报价</th><th class="num">新报价</th><th>说明</th></tr>
+  <tr><td>衣柜本体</td><td class="num">4,633.38 (2170&times;3140)</td><td class="num">4,597.34 (2160&times;3130)</td><td><span class="tag tag-change">量尺微调</span></td></tr>
+  <tr><td>玻璃门</td><td class="num">345.68 (&times;2)</td><td class="num">298.00 (&times;2)</td><td>改为补差价计价</td></tr>
+  <tr><td>铣槽拉手</td><td class="num">100.00</td><td class="num">190.00</td><td>拆分为长款+短款</td></tr>
+  <tr><td>超出抽屉</td><td class="num">&mdash;</td><td class="num">120.00</td><td><span class="tag tag-new">新增</span> 2个</td></tr>
+  <tr class="section-total"><td>小计</td><td class="num">5,079.06</td><td class="num">5,205.34</td><td class="pos">+126.28</td></tr>
+</table>
+
+<h3>4. 电视柜</h3>
+<table>
+  <tr><th>项目</th><th class="num">旧报价</th><th class="num">新报价</th><th>说明</th></tr>
+  <tr><td>电视柜本体 (2000&times;350)</td><td class="num">1,360.00</td><td class="num">1,360.00</td><td>尺寸不变</td></tr>
+  <tr><td>单边圆弧</td><td class="num">&mdash;</td><td class="num">480.00</td><td><span class="tag tag-new">新增</span> 2个</td></tr>
+  <tr class="section-total"><td>小计</td><td class="num">1,360.00</td><td class="num">1,840.00</td><td class="pos">+480.00</td></tr>
+</table>
+
+<!-- 二楼汇总 -->
+<table>
+  <tr><th>二楼区域</th><th class="num">旧报价</th><th class="num">新报价</th><th class="num">差额</th></tr>
+  <tr><td>主卧衣柜(右一)</td><td class="num">4,061.27</td><td class="num">4,211.27</td><td class="num pos">+150.00</td></tr>
+  <tr><td>中间卧室(右二)</td><td class="num">5,079.06</td><td class="num">4,971.22</td><td class="num neg">-107.84</td></tr>
+  <tr><td>阳台卧室(右三)</td><td class="num">5,079.06</td><td class="num">5,205.34</td><td class="num pos">+126.28</td></tr>
+  <tr><td>电视柜</td><td class="num">1,360.00</td><td class="num">1,840.00</td><td class="num pos">+480.00</td></tr>
+  <tr class="section-total"><td>二楼合计</td><td class="num">15,579.40</td><td class="num">16,227.84</td><td class="num pos">+648.43</td></tr>
+</table>
+
+<!-- 三楼 -->
+<div class="floor-header">三楼</div>
+
+<h3>1. 主卧衣柜（三楼右一）</h3>
+<table>
+  <tr><th>项目</th><th class="num">旧报价</th><th class="num">新报价</th><th>说明</th></tr>
+  <tr><td>衣柜本体 (2190&times;2620)</td><td class="num">3,901.70</td><td class="num">3,901.70</td><td>尺寸不变</td></tr>
+  <tr><td>铣槽拉手</td><td class="num">100.00 (1米&times;2)</td><td class="num">100.00 (长款&times;2)</td><td>价格不变</td></tr>
+  <tr><td>短款铣槽免拉手</td><td class="num">&mdash;</td><td class="num">90.00</td><td><span class="tag tag-new">新增</span> 3个</td></tr>
+  <tr><td>超出抽屉</td><td class="num">&mdash;</td><td class="num">60.00</td><td><span class="tag tag-new">新增</span> 1个</td></tr>
+  <tr class="section-total"><td>小计</td><td class="num">4,001.70</td><td class="num">4,151.70</td><td class="pos">+150.00</td></tr>
+</table>
+
+<h3>2. 中间卧室 &rarr; 衣柜+书桌（三楼右二）</h3>
+<table>
+  <tr><th>项目</th><th class="num">旧报价</th><th class="num">新报价</th><th>说明</th></tr>
+  <tr><td>衣柜本体</td><td class="num">3,866.07 (2170&times;2620)</td><td class="num">4,307.46 (2050&times;3090)</td><td><span class="tag tag-change">量尺高度大增</span></td></tr>
+  <tr><td>玻璃门</td><td class="num">345.68 (&times;2)</td><td class="num">298.00 (&times;2)</td><td>改为补差价计价</td></tr>
+  <tr><td>铣槽拉手</td><td class="num">&mdash;</td><td class="num">190.00</td><td><span class="tag tag-new">新增</span></td></tr>
+  <tr><td>超出抽屉</td><td class="num">&mdash;</td><td class="num">120.00</td><td><span class="tag tag-new">新增</span> 2个</td></tr>
+  <tr><td>床</td><td class="num">1,757.70 (630单价)</td><td class="num">1,836.00 (680单价)</td><td><span class="tag tag-change">单价上涨</span></td></tr>
+  <tr><td>床头软包</td><td class="num">500.00</td><td class="num">300.00</td><td>降价</td></tr>
+  <tr><td>床头板</td><td class="num">&mdash;</td><td class="num">630.00</td><td><span class="tag tag-new">新增</span></td></tr>
+  <tr class="section-total"><td>小计</td><td class="num">6,469.45</td><td class="num">7,681.46</td><td class="pos">+1,212.00</td></tr>
+</table>
+
+<!-- 三楼汇总 -->
+<table>
+  <tr><th>三楼区域</th><th class="num">旧报价</th><th class="num">新报价</th><th class="num">差额</th></tr>
+  <tr><td>主卧衣柜(右一)</td><td class="num">4,001.70</td><td class="num">4,151.70</td><td class="num pos">+150.00</td></tr>
+  <tr><td>中间卧室+床(右二)</td><td class="num">6,469.45</td><td class="num">7,681.46</td><td class="num pos">+1,212.00</td></tr>
+  <tr class="section-total"><td>三楼合计</td><td class="num">10,471.16</td><td class="num">11,833.17</td><td class="num pos">+1,362.00</td></tr>
+</table>
+
+<!-- 四、分类汇总 -->
+<h2>四、变化分类汇总</h2>
+
+<div class="category-grid">
+  <div class="cat-card a">
+    <h4>A. 全新增加区域</h4>
+    <div class="amount">+5,728 元</div>
+    <div class="pct">占总增额 52.1%</div>
+    <p style="font-size:13px; margin-top:8px; color:#666;">洗手盆 2,964 + 楼梯封板 2,764</p>
+  </div>
+  <div class="cat-card b">
+    <h4>B. 量尺尺寸变化</h4>
+    <div class="amount">+366 元</div>
+    <div class="pct">占总增额 3.3%</div>
+    <p style="font-size:13px; margin-top:8px; color:#666;">有增有减，净影响很小</p>
+  </div>
+  <div class="cat-card c">
+    <h4>C. 新增配件/工艺</h4>
+    <div class="amount">+7,817 元</div>
+    <div class="pct">占总增额 71.1%</div>
+    <p style="font-size:13px; margin-top:8px; color:#666;">圆弧、灯带、抽屉、玻璃门、背板等</p>
+  </div>
+  <div class="cat-card d">
+    <h4>D. 取消项目</h4>
+    <div class="amount neg">-2,682 元</div>
+    <div class="pct">占总增额 -24.4%</div>
+    <p style="font-size:13px; margin-top:8px; color:#666;">电视柜 -1,734 + 洗衣机柜 -748 + 软包 -200</p>
+  </div>
+</div>
+
+<h3>配件明细</h3>
+<table>
+  <tr><th>配件类型</th><th>涉及区域</th><th class="num">金额</th></tr>
+  <tr><td>圆弧处理 (R50)</td><td>鞋柜+电视柜+隔断+二楼电视柜</td><td class="num pos">+2,860.50</td></tr>
+  <tr><td>玻璃门增量</td><td>隔断(2&rarr;8块)+各房间新增</td><td class="num pos">+1,875.35</td></tr>
+  <tr><td>床头板</td><td>三楼右二</td><td class="num pos">+630.00</td></tr>
+  <tr><td>灯带系统</td><td>一楼电视柜</td><td class="num pos">+630.00</td></tr>
+  <tr><td>超出抽屉 (共9个)</td><td>隔断+各卧室</td><td class="num pos">+660.00</td></tr>
+  <tr><td>长款/短款铣槽免拉手增量</td><td>各卧室</td><td class="num pos">+540.00</td></tr>
+  <tr><td>18厘背板</td><td>一楼隔断</td><td class="num pos">+485.62</td></tr>
+  <tr><td>液压支撑杆</td><td>一楼房间</td><td class="num pos">+136.00</td></tr>
+</table>
+
+<!-- 五、待确认 -->
+<h2>五、待确认事项</h2>
+
+<div class="todo-list">
+  <div class="todo-item">
+    <div class="todo-num">1</div>
+    <div class="todo-text"><strong>报价公式错误</strong>：一楼房间小计多算 1,388 元，需供应商修正</div>
+  </div>
+  <div class="todo-item">
+    <div class="todo-num">2</div>
+    <div class="todo-text"><strong>一楼电视柜取消原因</strong>：旧报价有 1,734 元的电视柜(2550宽)，新报价消失，需确认是主动取消还是已并入其他项目</div>
+  </div>
+  <div class="todo-item">
+    <div class="todo-num">3</div>
+    <div class="todo-text"><strong>洗衣机旁柜子取消</strong>：旧报价 748 元，需确认是否不再需要</div>
+  </div>
+  <div class="todo-item">
+    <div class="todo-num">4</div>
+    <div class="todo-text"><strong>配件归属确认</strong>：圆弧、灯带系统、18厘背板、液压支撑杆等，是主动要求的升级还是供应商默认配置？</div>
+  </div>
+  <div class="todo-item">
+    <div class="todo-num">5</div>
+    <div class="todo-text"><strong>床单价变化</strong>：旧报价床按 630 元/m&sup2;，新报价按 680 元/m&sup2;（与柜子同价），需确认是否合理</div>
+  </div>
+  <div class="todo-item">
+    <div class="todo-num">6</div>
+    <div class="todo-text"><strong>玻璃门计价变化</strong>：旧报价用"轻奢玻璃门"按面积计价，新报价改为"玻璃门补差价"，计价方式不同</div>
+  </div>
+</div>
+
+<p style="text-align:center; color:#aaa; font-size:12px; margin-top:40px;">报告生成时间：2026年5月2日 &nbsp;|&nbsp; 数据来源：第二家供应商报价单</p>
+
+</div>
+</body>
+</html>
